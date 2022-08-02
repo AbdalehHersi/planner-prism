@@ -1,6 +1,6 @@
             //
 var currentHour = moment().hours(); //  recieve number to compare later
-console.log(currentHour);
+console.log("Current hour is " + currentHour);
 
 var update = function() {
     document.getElementById("currentDay")
@@ -24,14 +24,14 @@ $("button").on("click", function(){
     setTimeout(hideText, 3000); //  set timeout of 3 seconds
     var userText = $(this).siblings("textarea").val();  //  target the text area input
     var userTimeKey = parseInt($(this).parent().attr('id'), 10);    //  target the parent div with class row
-    console.log(userText, userTimeKey);
+    console.log("Usertext is " + userText,"UserTimeKey is " + userTimeKey);
     localStorage.setItem(userTimeKey, userText);    //  storing user inputs into local storage
 });
 
 function currentTimeEl() {
     $(".time-block").each(function() {
         var currentHourEl = parseInt($(this).attr('id'), 10);   //  return number
-        console.log(currentHourEl);
+        console.log("Current hour element is " + currentHourEl);
         if (currentHourEl < currentHour){   //  compare current hour with each timeblock
             console.log("past")
             $(this).children().eq(1).addClass("past");  //  target textarea class
