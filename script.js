@@ -1,4 +1,5 @@
-var currentHour = moment().hours();
+            //
+var currentHour = moment().hours(); //  recieve number to compare later
 console.log(currentHour);
 
 var update = function() {
@@ -6,8 +7,9 @@ var update = function() {
     .textContent = moment().format('MMMM Do YYYY, h:mm:ss a');
 };
 setInterval (update, 1000);
+    //Dynamicly updated time//
 
-function hideText(){
+function hideText(){    //  functions to hide and show text
     $("#localstrg-text").hide();
 }
 
@@ -19,24 +21,23 @@ hideText();
 
 $("button").on("click", function(){
     showText()
-    setTimeout(hideText, 3000);
-    var userText = $(this).siblings("textarea").val();
-    var userTimeKey = parseInt($(this).parent().attr('id'), 10);
+    setTimeout(hideText, 3000); //  set timeout of 3 seconds
+    var userText = $(this).siblings("textarea").val();  //  target the text area input
+    var userTimeKey = parseInt($(this).parent().attr('id'), 10);    //  target the parent div with class row
     console.log(userText, userTimeKey);
-    localStorage.setItem(userTimeKey, userText);
+    localStorage.setItem(userTimeKey, userText);    //  storing user inputs into local storage
 });
 
 function currentTimeEl() {
     $(".time-block").each(function() {
-        var currentHourEl = parseInt($(this).attr('id'), 10);
+        var currentHourEl = parseInt($(this).attr('id'), 10);   //  return number
         console.log(currentHourEl);
-        if (currentHourEl < currentHour){
+        if (currentHourEl < currentHour){   //  compare current hour with each timeblock
             console.log("past")
-            $(this).children().eq(1).addClass("past");
+            $(this).children().eq(1).addClass("past");  //  target textarea class
         } else if (currentHourEl == currentHour){
             console.log("present")
-            $(this).children().eq(1).removeClass('past');
-            // $(this).children().eq(1).removeClass('textarea');
+            $(this).children().eq(1).removeClass('past');   //  change class based on time
             $(this).children().eq(1).addClass('present');
         } else {
             console.log("future")
@@ -47,9 +48,9 @@ function currentTimeEl() {
         });
         
 };
-currentTimeEl();
+currentTimeEl();    //  has to run before local storage update
 
-$("#9 .textarea").val(localStorage.getItem("9"));
+$("#9 .textarea").val(localStorage.getItem("9"));   //  display the stored input from the saved button function in each textarea input
 $("#10 .textarea").val(localStorage.getItem("10"));
 $("#11 .textarea").val(localStorage.getItem("11"));
 $("#12 .textarea").val(localStorage.getItem("12"));
@@ -58,3 +59,4 @@ $("#14 .textarea").val(localStorage.getItem("14"));
 $("#15 .textarea").val(localStorage.getItem("15"));
 $("#16 .textarea").val(localStorage.getItem("16"));
 $("#17 .textarea").val(localStorage.getItem("17"));
+    //  gets rid of any unsaved text by displaying empty string
