@@ -17,7 +17,13 @@ function showText(){
 
 hideText();
 
-
+$("button").on("click", function(){
+    showText()
+    setTimeout(hideText, 3000);
+    var userText = $(this).siblings("textarea").val();
+    var userTimeKey = parseInt($(this).parent().attr('id'), 10);
+    localStorage.setItem(userTimeKey, userText);
+});
 
 function currentTimeEl() {
     $(".time-block").each(function() {
